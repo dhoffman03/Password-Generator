@@ -42,4 +42,4 @@ The application can be viewed with the below links:
 This project was completed through the University of Minesota Coding Bootcamp
  
 ## Refrences 
-* []()
+* [W3schools: Object-Methods](https://www.w3schools.com/js/js_object_methods.asp)
