@@ -14,44 +14,91 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-
-// var holding password criteria
-var criteria = {
   //arry holding uppercase letters
-  upperCharacters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
+  var upperCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+  "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   //arry holding lowercase letters
-  lowerCharacters: ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+  var lowerCharacters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+  "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   //array holding numbers
-  numericCharacters: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+  var numericCharacters = ["0","1","2","3","4","5","6","7","8","9"];
   //array holding special characters
-  specialCharacters: ["~","!","#","$","%","&","*","@","?","^","_","-","|","/"],
-}
+  var specialCharacters = ["~","!","#","$","%","&","*","@","?","^","_","-","|","/"];
 
 
-// declare function generatePasswor()
+// declare function generatePassword()
 function generatePassword() {
-
-  // var for selected characters
-  var selectedCharacters = []
-
-
   //var used for prompts
   var uppercase;
   var lowercase;
   var numeric;
   var special;
 
-  // Var holding password length prompt 
-  var passwordLength = prompt("How many characters would you like in your password?")
-  // if password length does not meet criteria, stop function
-  if (passwordLength < 8 || passwordLength > 128) {
-    return password;
+  //set password length
+  var pwdLength = 0;
+  //Clear password text
+  var password = "";
+
+  // for loop, passwordLength is intially 0; passwordLength should be no less than 8 and no more than 128; length increases by 1
+  for (passwordLength = 0; passwordLength >= 8 || passwordLength <= 128; passwordLength++) {
+    // Var holding password length prompt
+    var passwordLength = prompt("How many characters would you like in your password?");
+
+    // if password length does not meet criteria, alert user of criteria and stop function
+    if (passwordLength < 8 || passwordLength > 128) {
+      alert("Password must be between 8 and 128 characters");
+     // Returns to placeholder text
+      return placeholder;
+    // if password meets criteria
+    } else if (passwordLength >= 8 || passwordLength <= 128) {
+      //calls the function to show prompts for criteria
+      criteriaPrompts();
+
+      // Add characters until pwdLength = passwordLength set by user
+      while (pwdLength < passwordLength) {
+      // If user presses cancel for all criteria show alert to make sure user chooses at least one
+      if (uppercase === false && lowercase === false && numeric === false && special === false) {
+      alert("Password must include at least one criteria of uppercase, lowercase, numeric or special character")
+      criteriaPrompts();
+      } else {
+        // if uppercase is true and pwdlength is less than selected length
+        // Grab a random uppercaseCharacter and add to password
+        // Update pwdLength by 1
+        if (uppercase && pwdLength < passwordLength) {
+          var upper = upperCharacters[Math.floor(Math.random() * upperCharacters.length)];
+          password = password + upper;
+          pwdLength++;
+        }
+        // if lowercase is true and pwdlength is less than selected length
+        // Grab a random lowercaseCharacter and add to password
+        // Update pwdLength by 1
+        if (lowercase && pwdLength < passwordLength) {
+          var lower = lowerCharacters[Math.floor(Math.random() * lowerCharacters.length)];
+          password = password + lower;
+          pwdLength++;
+        }
+        // if numeric is true and pwdlength is less than selected length
+        // Grab a random numericCharacter and add to password
+        // Update pwdLength by 1
+        if (uppercase && pwdLength < passwordLength) {
+          var numeric = numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
+          password = password + numeric;
+          pwdLength++;
+        }
+        // if special is true and pwdlength is less than selected length
+        // Grab a random specialCharacter and add to password
+        // Update pwdLength by 1
+        if (special && pwdLength < passwordLength) {
+          var sp = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+          password = password + sp;
+          pwdLength++;
+        }
+      }
+    } 
   }
-
-  //calls the function to show prompts for criteria
-  criteriaPrompts ();
-
-  return password;
+// Returns generated password and displays on page
+return password;
+}
 
   //internal function to prompt user for password criteria
   function criteriaPrompts() {
@@ -61,21 +108,3 @@ function generatePassword() {
     special = confirm("Would you like to include special characters?");
   }
 }
-
-
-
-
-// once each prompt/confirm is answered 
-// if confirms are true keep or get character type for the confirm
-// if confirm is true then concact related arr to selected characters arr s
-//if(isUppercase) { selectedCharacters.concat(uppercaseCharacters); }
-// i.e. ['A','a', 1, %, $]
-
-
-// is !confirm stop function
-
-
-// for loop on passwordLength 
-
-
-// use Math.floor(Math.random() * selectedCharacters) to get random index of selectedCharacters
