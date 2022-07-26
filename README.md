@@ -15,7 +15,7 @@ This project required using starter code to create an application that enables u
 * Edited colors on stylesheet
 ```
 
-![image of deployed webpage](./assets/Password-Generator_Site.jpeg)
+[image of deployed webpage](./assets/Password-Generator_Site.jpeg)
 
 
 ## Installation
