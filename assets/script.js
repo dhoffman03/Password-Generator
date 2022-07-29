@@ -64,35 +64,39 @@ function generatePassword() {
         // if uppercase is true and pwdlength is less than selected length
         // Grab a random uppercaseCharacter and add to password
         // Update pwdLength by 1
-        if (uppercase && pwdLength < passwordLength) {
+        if (uppercase === true && pwdLength < passwordLength) {
           var upper = upperCharacters[Math.floor(Math.random() * upperCharacters.length)];
           password = password + upper;
           pwdLength++;
         }
+
         // if lowercase is true and pwdlength is less than selected length
         // Grab a random lowercaseCharacter and add to password
         // Update pwdLength by 1
-        if (lowercase && pwdLength < passwordLength) {
+        if (lowercase === true && pwdLength < passwordLength) {
           var lower = lowerCharacters[Math.floor(Math.random() * lowerCharacters.length)];
           password = password + lower;
           pwdLength++;
         }
+
         // if numeric is true and pwdlength is less than selected length
         // Grab a random numericCharacter and add to password
         // Update pwdLength by 1
-        if (uppercase && pwdLength < passwordLength) {
-          var numeric = numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
-          password = password + numeric;
+        if (numeric === true && pwdLength < passwordLength) {
+          var num = numericCharacters[Math.floor(Math.random() * numericCharacters.length)];
+          password = password + num;
           pwdLength++;
         }
+
         // if special is true and pwdlength is less than selected length
         // Grab a random specialCharacter and add to password
         // Update pwdLength by 1
-        if (special && pwdLength < passwordLength) {
+        if (special === true && pwdLength < passwordLength) {
           var sp = specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
           password = password + sp;
           pwdLength++;
         }
+        
       }
     } 
   }
